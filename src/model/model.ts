@@ -8,3 +8,9 @@ export interface Product {
     year: number;
     model: string;
 }
+
+export interface ProductFormData {
+    manufacturer: string;
+    year: number;
+    model: string;
+}

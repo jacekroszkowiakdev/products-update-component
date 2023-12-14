@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ProductList } from "./components/ProductsList.component";
 import data from "./db/db.json";
 import { Product } from "./model/model";
+import { Link } from "react-router-dom";
 
 const App: React.FC = () => {
     useEffect(() => {
@@ -42,6 +43,9 @@ const App: React.FC = () => {
         <>
             <h2>Click the button to see the products</h2>
             <ProductList products={products} />
+            <Link to="/modify-products" state={products}>
+                Modify Products
+            </Link>
         </>
     );
 };
