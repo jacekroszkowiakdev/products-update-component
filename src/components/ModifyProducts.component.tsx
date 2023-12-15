@@ -12,7 +12,7 @@ export const ModifyProducts: React.FC = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // setFormData(new FormData(e.currentTarget));
-        console.log("e.current target", e.currentTarget);
+
         const formData = new FormData(e.currentTarget);
 
         setNewProduct({
@@ -21,18 +21,29 @@ export const ModifyProducts: React.FC = () => {
             year: formData.get("year"),
             model: formData.get("model"),
         });
+
+        // CLEAN UP AFTER THE WORK ON POST IS FINISHED:
         console.log("newProduct: ", newProduct);
-        console.log("formData: ", formData);
+        const testUploadData = {
+            id: 11,
+            manufacturer: "TEST_PAYLOAD",
+            year: 2022,
+            model: "TEST_PAYLOAD",
+        };
+
+        const testStringified = JSON.stringify(testUploadData);
+        console.log("testUploadData", testStringified);
+        console.log("unStringified", testUploadData);
 
         fetch("https://localhost:3000/products", {
             method: "POST",
+            mode: "cors",
             body: JSON.stringify(newProduct),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },
         })
             .then((response) => {
-                console.log(response.body);
                 return response.json();
             })
             .catch((error) => console.error("Error posting data:", error));
