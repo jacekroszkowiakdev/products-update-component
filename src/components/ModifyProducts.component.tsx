@@ -6,12 +6,14 @@ import { useLocation } from "react-router-dom";
 export const ModifyProducts: React.FC = () => {
     const location = useLocation();
     const products: Product[] = location.state;
-    const [newProduct, setNewProduct] = useState<T>(null);
-    const [formData, setFormData] = useState<T>(null);
+    const [newProduct, setNewProduct] = useState<Product | object>({});
+    // const [formData, setFormData] = useState<FormData | object>({});
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setFormData(new FormData(e.currentTarget));
+        // setFormData(new FormData(e.currentTarget));
+        console.log("e.current target", e.currentTarget);
+        const formData = new FormData(e.currentTarget);
 
         setNewProduct({
             id: products.length + 1,
