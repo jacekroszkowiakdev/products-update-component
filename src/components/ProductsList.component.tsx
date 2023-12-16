@@ -95,16 +95,17 @@ export const ProductList: React.FC<{ products: Product[] }> = ({
             <h3>The Products:</h3>
             {/* Render all products form the data base on page load */}
             <div className="products-container">
-                {sorted.length === 0 && filtered.length === 0 && (
-                    <div>
-                        {products.map((product) => (
-                            <div key={product.id}>
-                                <strong>{product.manufacturer}</strong> -{" "}
-                                {product.model} ({product.year})
-                            </div>
-                        ))}
-                    </div>
-                )}
+                {(products.length !== 0 && filtered.length === 0) ||
+                    (products.length !== 0 && sorted.length === 0 && (
+                        <div>
+                            {products.map((product) => (
+                                <div key={product.id}>
+                                    <strong>{product.manufacturer}</strong> -{" "}
+                                    {product.model} ({product.year})
+                                </div>
+                            ))}
+                        </div>
+                    ))}
             </div>
 
             {/* conditionally render the sorted  products by clicking button: */}

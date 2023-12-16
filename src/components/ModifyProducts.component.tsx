@@ -35,7 +35,7 @@ export const ModifyProducts: React.FC = () => {
         console.log("testUploadData", testStringified);
         console.log("unStringified", testUploadData);
 
-        fetch("https://localhost:3000/products", {
+        fetch("https://jsonplaceholder.typicode.com/posts", {
             method: "POST",
             mode: "cors",
             body: JSON.stringify(newProduct),
@@ -44,7 +44,9 @@ export const ModifyProducts: React.FC = () => {
             },
         })
             .then((response) => {
-                return response.json();
+                return (
+                    console.log("response:", response.status), response.json()
+                );
             })
             .catch((error) => console.error("Error posting data:", error));
     };
